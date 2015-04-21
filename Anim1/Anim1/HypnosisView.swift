@@ -1,11 +1,3 @@
-//
-//  HypnosisView.swift
-//  Anim1
-//
-//  Created by Lucas Caballero on 3/22/15.
-//  Copyright (c) 2015 Cool Kid Luke. All rights reserved.
-//
-
 import UIKit
 import Darwin
 
@@ -13,18 +5,78 @@ let PI = M_PI
 let _2PI = 2 * PI
 
 class HypnosisView : UIView {
+    
+    var loop : GameLoop?
+    var timer : NSTimer?
+    var iteration : Int = 1
+    var captureIteration : Int = 1
+    var c : Int = 0
+    var colors : [UIColor] = [
+        UIColor.redColor(),
+        UIColor.greenColor(),
+        UIColor.blueColor()
+    ]
+    var image : UIImage?
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = UIColor.whiteColor()
+        image = UIImage(named:"logo.png")
+
+        let selector : Selector = "showFps"
+        timer = NSTimer.scheduledTimerWithTimeInterval(
+            1.0, target:self, selector: selector, userInfo: nil, repeats: true)
+    }
+    
+    func showFps() {
+        let fps = (iteration - captureIteration)
+        println("FPS: \(fps)")
+        captureIteration = iteration
     }
 
     required init(coder: NSCoder) {
         super.init(coder: NSCoder())
     }
-
-    override func drawRect(rect: CGRect) {
+    
+    func start() {
+        println("started")
         var bounds : CGRect = self.window!.bounds
+        var loop = GameLoop(doSomething: self.update)
+    }
+    
+    func update() {
+        self.setNeedsDisplay()
+        iteration++
+    }
+    
+    override func drawRect(rect: CGRect) {
+        if let bounds = self.window?.bounds {
+//            drawCircles(bounds)
+            drawGradient(bounds)
+            drawImage(bounds)
+            drawSquare()
+        }
+    }
+    
+    func drawSquare() {
         
+        var path = UIBezierPath()
+        path.moveToPoint(CGPointMake(0, 0))
+        path.addLineToPoint(CGPointMake(30.0, 0.0))
+        path.addLineToPoint(CGPointMake(30.0, 30.0))
+        path.addLineToPoint(CGPointMake(0, 30.0))
+        path.addLineToPoint(CGPointMake(0, 0))
+        
+        if (iteration % 100 == 0) {
+            c++
+        }
+        colors[c % colors.count].setFill()
+
+        path.fill()
+    }
+    
+    func drawCircles(bounds: CGRect) {
+
         let x = (bounds.origin.x + bounds.size.width) / 2
         let y = (bounds.origin.y + bounds.size.height) / 2
         var center = CGPointMake(x, y)
@@ -43,16 +95,13 @@ class HypnosisView : UIView {
                 startAngle: 0,
                 endAngle: CGFloat(_2PI),
                 clockwise: true)
-            
-            
+
             path.stroke()
         }
-        
-        drawGradient(bounds)
-        drawImage(bounds)
     }
     
     func drawGradient(bounds: CGRect) {
+
         let context = UIGraphicsGetCurrentContext()
         CGContextSaveGState(context)
         
@@ -96,11 +145,11 @@ class HypnosisView : UIView {
     }
     
     func drawImage(bounds: CGRect) {
+
         var context = UIGraphicsGetCurrentContext()
         CGContextSaveGState(context)
         CGContextSetShadow(context, CGSizeMake(4,7), 3)
         
-        var image = UIImage(named:"logo.png")
         let area = imageArea(bounds)
         image?.drawInRect(area)
         

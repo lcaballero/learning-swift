@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5722E7DA1ABFE4D70092EF16 /* GameLoop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5722E7D91ABFE4D70092EF16 /* GameLoop.swift */; };
 		5753C7501ABED2510098DEBF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5753C74F1ABED2510098DEBF /* AppDelegate.swift */; };
 		5753C7521ABED2510098DEBF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5753C7511ABED2510098DEBF /* ViewController.swift */; };
 		5753C7551ABED2510098DEBF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5753C7531ABED2510098DEBF /* Main.storyboard */; };
@@ -28,6 +29,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5722E7D91ABFE4D70092EF16 /* GameLoop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLoop.swift; sourceTree = "<group>"; };
 		5753C74A1ABED2510098DEBF /* Anim1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Anim1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5753C74E1ABED2510098DEBF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5753C74F1ABED2510098DEBF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 				5753C74D1ABED2510098DEBF /* Supporting Files */,
 				5753C76F1ABF36760098DEBF /* HypnosisView.swift */,
 				5753C7711ABF8DF20098DEBF /* logo.png */,
+				5722E7D91ABFE4D70092EF16 /* GameLoop.swift */,
 			);
 			path = Anim1;
 			sourceTree = "<group>";
@@ -220,6 +223,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5753C7521ABED2510098DEBF /* ViewController.swift in Sources */,
+				5722E7DA1ABFE4D70092EF16 /* GameLoop.swift in Sources */,
 				5753C7701ABF36760098DEBF /* HypnosisView.swift in Sources */,
 				5753C7501ABED2510098DEBF /* AppDelegate.swift in Sources */,
 			);
@@ -413,6 +417,7 @@
 				5753C76B1ABED2510098DEBF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5753C76C1ABED2510098DEBF /* Build configuration list for PBXNativeTarget "Anim1Tests" */ = {
 			isa = XCConfigurationList;
@@ -421,6 +426,7 @@
 				5753C76E1ABED2510098DEBF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

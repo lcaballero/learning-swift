@@ -12,6 +12,7 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var view: HypnosisView?
 
 
     func application(
@@ -21,13 +22,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         println("application")
             
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-
-        var firstFrame = self.window?.bounds
-        var firstView = HypnosisView(frame:firstFrame!)
-        
-        self.window?.addSubview(firstView)
-        self.window?.backgroundColor = UIColor.whiteColor()
-        self.window?.makeKeyAndVisible()
+            
+        if let window = self.window {
+            var root = ViewController()
+            window.rootViewController = root
+            
+            var firstFrame = window.bounds
+            view = HypnosisView(frame:firstFrame)
+            
+            window.addSubview(view!)
+            window.backgroundColor = UIColor.whiteColor()
+            window.makeKeyAndVisible()
+        }
 
         return true
     }
@@ -69,6 +75,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // application was inactive. If the application was previously in the
         // background, optionally refresh the user interface.
         println("applicationDidBecomeActive")
+        view!.start()
     }
 
     func applicationWillTerminate(application: UIApplication) {
@@ -76,7 +83,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // appropriate. See also applicationDidEnterBackground:.
         println("applicationWillTerminate")
     }
-
-
 }
 
